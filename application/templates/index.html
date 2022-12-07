@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stroke Analysis</title>
+  </head>
+  <body>
+    <h2>Welcome to Stroke Analysis App</h2>
+    <h3>Enter your information</h3>
+    <form
+      name="carform"
+      id="carform"
+      action="{{ url_for('strokedetect') }}"
+      method="POST"
+    >
+      <table
+        border="1"
+        style="border-color: gray; border-collapse: collapse"
+        cellpadding="5"
+        cellspacing="5"
+      >
+        <tr>
+          <td>
+            <p>Age</p>
+            <input name="age" type="number" />
+          </td>
+          <td>
+            <p>Heart Disease</p>
+            <select name="heart_disease">
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </td>
+          <td>
+            <p>Average Glucose Level</p>
+            <input name="average_glucose_level" type="number" />
+          </td>
+        </tr>
+      </table>
+      <input type="hidden" id="forminput" name="forminput" />
+      <p><input type="submit" value="Evaluate my chances" /></p>
+      {% if (results) %}
+      <h3>Stroke evaluation for following features:</h3>
+      <p>Age: {{age}}</p>
+      <p>Heart Disease: {{heart_disease}}</p>
+      <p>Average Glucose Level: {{average_glucose_level}}</p>
+      <h3>Prediction: {{ pred }}</h3>
+      <h3>Accuracy: {{ accuracy }}</h3>
+      {% endif %}
+    </form>
+  </body>
+</html>
